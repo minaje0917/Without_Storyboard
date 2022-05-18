@@ -13,7 +13,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemMint
     }
-
+    
+    let tableview = UITableView()
 
 }
 
