@@ -11,10 +11,20 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemMint
+        view.backgroundColor = .white
+        view.addSubview(label)
+        
     }
     
+    
     let tableview = UITableView()
+    
+    private let label: UILabel = {
+        let label = UILabel()
+        label.text = "상어상어"
+        return label
+    }()
+    
 
 }
 
