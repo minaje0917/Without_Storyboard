@@ -23,13 +23,25 @@ class ViewController: UIViewController {
         setButton.backgroundColor = .systemMint
         setButton.translatesAutoresizingMaskIntoConstraints = false
         
-        view.addSubview(setButton)
+        func setupview() {
+            
+            view.addSubview(setButton)
+            
+        }
         
-        let layout = view.safeAreaLayoutGuide
+        //let layout = view.safeAreaLayoutGuide
         
-        setButton.leadingAnchor.constraint(equalTo: layout.leadingAnchor, constant: 20).isActive = true
-        setButton.bottomAnchor.constraint(equalTo: layout.bottomAnchor, constant: -20).isActive = true
-        setButton.trailingAnchor.constraint(equalTo: layout.trailingAnchor, constant: -20).isActive = true
+        //setButton.leadingAnchor.constraint(equalTo: layout.leadingAnchor, constant: 20).isActive = true
+        //setButton.bottomAnchor.constraint(equalTo: layout.bottomAnchor, constant: -20).isActive = true
+        //setButton.trailingAnchor.constraint(equalTo: layout.trailingAnchor, constant: -20).isActive = true
+        func layout() {
+            setButton.snp.makeConstraints{ make in
+                make.center.equalToSuperview()
+            }
+            
+        }
+        setupview()
+        layout()
     }
     
     func setLabel() {
@@ -48,7 +60,6 @@ class ViewController: UIViewController {
         setLabel.leadingAnchor.constraint(equalTo: layout.leadingAnchor, constant: 16).isActive = true
         setLabel.trailingAnchor.constraint(equalTo: layout.trailingAnchor, constant: -16).isActive = true
         setLabel.topAnchor.constraint(equalTo: layout.topAnchor,constant: 10).isActive = true
-        
     }
 }
 
