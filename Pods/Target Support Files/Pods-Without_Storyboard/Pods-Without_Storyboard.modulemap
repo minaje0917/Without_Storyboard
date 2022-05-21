@@ -1,0 +1,6 @@
+framework module Pods_Without_Storyboard {
+  umbrella header "Pods-Without_Storyboard-umbrella.h"
+
+  export *
+  module * { export * }
+}
