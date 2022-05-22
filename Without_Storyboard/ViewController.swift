@@ -18,7 +18,13 @@ class ViewController: UIViewController {
     }
     
     func setButton() {
-        let setButton = UIButton()
+        let setButton = UIButton(
+            frame: CGRect(
+                x: <#T##CGFloat#>,
+                y: <#T##CGFloat#>,
+                width: <#T##CGFloat#>,
+                height: <#T##CGFloat#>
+            ))
         setButton.setTitle("상어상어", for: .normal)
         setButton.backgroundColor = .systemMint
         setButton.translatesAutoresizingMaskIntoConstraints = false
@@ -37,6 +43,10 @@ class ViewController: UIViewController {
         func layout() {
             setButton.snp.makeConstraints{ make in
                 make.center.equalToSuperview()
+                make.left.equalToSuperview().offset(140)
+                make.top.equalToSuperview().offset(370)
+                //make.leading.equalToSuperview().offset(40)
+                //make.size.equalToSuperview().offset(10)
             }
             
         }
