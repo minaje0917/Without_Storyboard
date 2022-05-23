@@ -18,35 +18,32 @@ class ViewController: UIViewController {
     }
     
     func setButton() {
-        let setButton = UIButton(
-            frame: CGRect(
-                x: <#T##CGFloat#>,
-                y: <#T##CGFloat#>,
-                width: <#T##CGFloat#>,
-                height: <#T##CGFloat#>
-            ))
-        setButton.setTitle("상어상어", for: .normal)
-        setButton.backgroundColor = .systemMint
-        setButton.translatesAutoresizingMaskIntoConstraints = false
+        let plusButton = UIButton()
+        let minusButton = UIButton()
+        plusButton.setTitle("+", for: .normal)
+        plusButton.backgroundColor = .systemGray2
+        plusButton.translatesAutoresizingMaskIntoConstraints = false
+        minusButton.setTitle("-", for: .normal)
+        minusButton.backgroundColor = .systemGray2
+        minusButton.translatesAutoresizingMaskIntoConstraints = false
         
         func setupview() {
             
-            view.addSubview(setButton)
+            view.addSubview(plusButton)
+            view.addSubview(minusButton)
             
         }
-        
-        //let layout = view.safeAreaLayoutGuide
-        
-        //setButton.leadingAnchor.constraint(equalTo: layout.leadingAnchor, constant: 20).isActive = true
-        //setButton.bottomAnchor.constraint(equalTo: layout.bottomAnchor, constant: -20).isActive = true
-        //setButton.trailingAnchor.constraint(equalTo: layout.trailingAnchor, constant: -20).isActive = true
+
         func layout() {
-            setButton.snp.makeConstraints{ make in
-                make.center.equalToSuperview()
-                make.left.equalToSuperview().offset(140)
-                make.top.equalToSuperview().offset(370)
-                //make.leading.equalToSuperview().offset(40)
-                //make.size.equalToSuperview().offset(10)
+            plusButton.snp.makeConstraints{
+                $0.centerY.equalToSuperview()
+                $0.leading.equalToSuperview().offset(100)
+                $0.size.equalTo(100)
+            }
+            minusButton.snp.makeConstraints{
+                $0.centerY.equalToSuperview()
+                $0.leading.equalToSuperview().offset(200)
+                $0.size.equalTo(100)
             }
             
         }
