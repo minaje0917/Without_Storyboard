@@ -18,8 +18,15 @@ class ViewController: UIViewController {
         $0.setTitle("-", for: .normal)
         $0.backgroundColor = .systemGray2
     }
-    let stroke = UIView().then {
+    let stroke1 = UIView().then {
         $0.backgroundColor = .black
+    }
+    let stroke2 = UIView().then {
+        $0.backgroundColor = .black
+    }
+    let mulButton = UIButton().then {
+        $0.setTitle("x", for: .normal)
+        $0.backgroundColor = .systemGray2
     }
 
     override func viewDidLoad() {
@@ -31,7 +38,7 @@ class ViewController: UIViewController {
     }
     
     private func addView() {
-        [plusButton, minusButton, stroke].forEach {
+        [plusButton, minusButton, stroke1, stroke2, mulButton].forEach {
             view.addSubview($0)
         }
     }
@@ -48,12 +55,25 @@ class ViewController: UIViewController {
             $0.leading.equalToSuperview().offset(0)
             $0.size.equalTo(100)
         }
-        stroke.snp.makeConstraints {
+        stroke1.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.height.equalTo(1)
             $0.top.equalTo(minusButton.snp.top).offset(0)
             $0.leading.equalToSuperview().offset(0)
         }
+        stroke2.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.height.equalTo(1)
+            $0.leading.equalToSuperview().offset(0)
+            $0.top.equalTo(minusButton.snp.bottom).offset(0)
+        }
+        mulButton.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(stroke2.snp.bottom).offset(0)
+            $0.leading.equalToSuperview().offset(0)
+            $0.size.equalTo(100)
+        }
+        
         
     }
     
