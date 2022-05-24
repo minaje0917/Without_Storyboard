@@ -12,9 +12,14 @@ import Then
 class ViewController: UIViewController {
     let plusButton = UIButton().then {
         $0.setTitle("+", for: .normal)
+        $0.backgroundColor = .systemGray2
     }
     let minusButton = UIButton().then {
         $0.setTitle("-", for: .normal)
+        $0.backgroundColor = .systemGray2
+    }
+    let stroke = UIView().then {
+        $0.backgroundColor = .black
     }
 
     override func viewDidLoad() {
@@ -23,33 +28,33 @@ class ViewController: UIViewController {
         addView()
         setLayout()
         setLabel()
-        setButton()
-    }
-    
-    func setButton() {
-        //plusButton.setTitle("+", for: .normal)
-        plusButton.backgroundColor = .systemGray2
-        //minusButton.setTitle("-", for: .normal)
-        minusButton.backgroundColor = .systemGray2
-        
     }
     
     private func addView() {
-        [plusButton, minusButton].forEach {
+        [plusButton, minusButton, stroke].forEach {
             view.addSubview($0)
         }
     }
     private func setLayout() {
         plusButton.snp.makeConstraints{
-            $0.centerY.equalToSuperview()
-            $0.leading.equalToSuperview().offset(100)
+            $0.centerX.equalToSuperview()
+            $0.top.equalToSuperview().offset(250)
+            $0.leading.equalToSuperview().offset(0)
             $0.size.equalTo(100)
         }
         minusButton.snp.makeConstraints{
-            $0.centerY.equalToSuperview()
-            $0.leading.equalToSuperview().offset(200)
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(plusButton.snp.bottom).offset(0)
+            $0.leading.equalToSuperview().offset(0)
             $0.size.equalTo(100)
         }
+        stroke.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.height.equalTo(1)
+            $0.top.equalTo(minusButton.snp.top).offset(0)
+            $0.leading.equalToSuperview().offset(0)
+        }
+        
     }
     
     func setLabel() {
