@@ -12,6 +12,7 @@
 		7787EBDC28334EA100BD924F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7787EBDB28334EA100BD924F /* ViewController.swift */; };
 		7787EBE128334EA200BD924F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7787EBE028334EA200BD924F /* Assets.xcassets */; };
 		7787EBE428334EA200BD924F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7787EBE228334EA200BD924F /* LaunchScreen.storyboard */; };
+		77A4E1DE283BAE5A00DB218D /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 77A4E1DD283BAE5A00DB218D /* Then */; };
 		90181A0A07DCA678E38DE5B4 /* Pods_Without_Storyboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B34EC94CC72AD46130DB0024 /* Pods_Without_Storyboard.framework */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +35,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				90181A0A07DCA678E38DE5B4 /* Pods_Without_Storyboard.framework in Frameworks */,
+				77A4E1DE283BAE5A00DB218D /* Then in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,7 +87,6 @@
 				8B6E5253C5502860B559328A /* Pods-Without_Storyboard.debug.xcconfig */,
 				868414A3F38C65B5BEB046DA /* Pods-Without_Storyboard.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -107,6 +108,9 @@
 			dependencies = (
 			);
 			name = Without_Storyboard;
+			packageProductDependencies = (
+				77A4E1DD283BAE5A00DB218D /* Then */,
+			);
 			productName = Without_Storyboard;
 			productReference = 7787EBD428334EA100BD924F /* Without_Storyboard.app */;
 			productType = "com.apple.product-type.application";
@@ -135,6 +139,9 @@
 				Base,
 			);
 			mainGroup = 7787EBCB28334EA100BD924F;
+			packageReferences = (
+				77A4E1DC283BAE5A00DB218D /* XCRemoteSwiftPackageReference "Then" */,
+			);
 			productRefGroup = 7787EBD528334EA100BD924F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -413,6 +420,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		77A4E1DC283BAE5A00DB218D /* XCRemoteSwiftPackageReference "Then" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/Then";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		77A4E1DD283BAE5A00DB218D /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 77A4E1DC283BAE5A00DB218D /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7787EBCC28334EA100BD924F /* Project object */;
 }

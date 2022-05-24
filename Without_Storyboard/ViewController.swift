@@ -7,48 +7,49 @@
 
 import UIKit
 import SnapKit
+import Then
 
 class ViewController: UIViewController {
+    let plusButton = UIButton().then {
+        $0.setTitle("+", for: .normal)
+    }
+    let minusButton = UIButton().then {
+        $0.setTitle("-", for: .normal)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        addView()
+        setLayout()
         setLabel()
         setButton()
     }
     
     func setButton() {
-        let plusButton = UIButton()
-        let minusButton = UIButton()
-        plusButton.setTitle("+", for: .normal)
+        //plusButton.setTitle("+", for: .normal)
         plusButton.backgroundColor = .systemGray2
-        plusButton.translatesAutoresizingMaskIntoConstraints = false
-        minusButton.setTitle("-", for: .normal)
+        //minusButton.setTitle("-", for: .normal)
         minusButton.backgroundColor = .systemGray2
-        minusButton.translatesAutoresizingMaskIntoConstraints = false
         
-        func setupview() {
-            
-            view.addSubview(plusButton)
-            view.addSubview(minusButton)
-            
+    }
+    
+    private func addView() {
+        [plusButton, minusButton].forEach {
+            view.addSubview($0)
         }
-
-        func layout() {
-            plusButton.snp.makeConstraints{
-                $0.centerY.equalToSuperview()
-                $0.leading.equalToSuperview().offset(100)
-                $0.size.equalTo(100)
-            }
-            minusButton.snp.makeConstraints{
-                $0.centerY.equalToSuperview()
-                $0.leading.equalToSuperview().offset(200)
-                $0.size.equalTo(100)
-            }
-            
+    }
+    private func setLayout() {
+        plusButton.snp.makeConstraints{
+            $0.centerY.equalToSuperview()
+            $0.leading.equalToSuperview().offset(100)
+            $0.size.equalTo(100)
         }
-        setupview()
-        layout()
+        minusButton.snp.makeConstraints{
+            $0.centerY.equalToSuperview()
+            $0.leading.equalToSuperview().offset(200)
+            $0.size.equalTo(100)
+        }
     }
     
     func setLabel() {
