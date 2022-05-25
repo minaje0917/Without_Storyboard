@@ -28,6 +28,23 @@ class ViewController: UIViewController {
         $0.setTitle("x", for: .normal)
         $0.backgroundColor = .systemGray2
     }
+    let deButton =  UIButton().then {
+        $0.backgroundColor = .systemGray2
+        $0.setTitle("÷", for: .normal)
+    }
+    let stroke3 = UIView().then{
+        $0.backgroundColor = .black
+    }
+    let equalButton = UIButton().then {
+        $0.setTitle("=", for: .normal)
+        $0.backgroundColor = .systemGray2
+    }
+    let stroke4 = UIView().then {
+        $0.backgroundColor = .black
+    }
+    let resultField = UITextField().then {
+        $0.backgroundColor = .black.withAlphaComponent(0.8)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,14 +55,21 @@ class ViewController: UIViewController {
     }
     
     private func addView() {
-        [plusButton, minusButton, stroke1, stroke2, mulButton].forEach {
+        [plusButton, minusButton, stroke1, stroke2, mulButton,
+         deButton, stroke3, equalButton, stroke4, resultField].forEach {
             view.addSubview($0)
         }
     }
     private func setLayout() {
+        resultField.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalToSuperview().offset(241)
+            $0.leading.equalToSuperview().offset(0)
+            $0.size.equalTo(100)
+        }
         plusButton.snp.makeConstraints{
             $0.centerX.equalToSuperview()
-            $0.top.equalToSuperview().offset(250)
+            $0.top.equalTo(resultField.snp.bottom).offset(0)
             $0.leading.equalToSuperview().offset(0)
             $0.size.equalTo(100)
         }
@@ -73,8 +97,30 @@ class ViewController: UIViewController {
             $0.leading.equalToSuperview().offset(0)
             $0.size.equalTo(100)
         }
-        
-        
+        deButton.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(stroke3.snp.bottom).offset(0)
+            $0.leading.equalToSuperview().offset(0)
+            $0.size.equalTo(100)
+        }
+        stroke3.snp.makeConstraints{
+            $0.centerX.equalToSuperview()
+            $0.height.equalTo(1)
+            $0.leading.equalToSuperview().offset(0)
+            $0.top.equalTo(mulButton.snp.bottom).offset(0)
+        }
+        stroke4.snp.makeConstraints{
+            $0.centerX.equalToSuperview()
+            $0.height.equalTo(1)
+            $0.leading.equalToSuperview().offset(0)
+            $0.top.equalTo(deButton.snp.bottom).offset(0)
+        }
+        equalButton.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(stroke4.snp.bottom).offset(0)
+            $0.leading.equalToSuperview().offset(0)
+            $0.size.equalTo(100)
+        }
     }
     
     func setLabel() {
