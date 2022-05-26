@@ -10,6 +10,7 @@ import SnapKit
 import Then
 
 class ViewController: UIViewController {
+    private let bounds = UIScreen.main.bounds
     let plusButton = UIButton().then {
         $0.setTitle("+", for: .normal)
         $0.backgroundColor = .systemGray2
@@ -43,7 +44,14 @@ class ViewController: UIViewController {
         $0.backgroundColor = .black
     }
     let resultField = UITextField().then {
-        $0.backgroundColor = .black.withAlphaComponent(0.8)
+        $0.backgroundColor = .black.withAlphaComponent(0.6)
+    }
+    let refreshButton = UIButton().then {
+        $0.backgroundColor = .systemGray2
+        $0.setTitle("AC", for: .normal)
+    }
+    let stroke5 = UIView().then {
+        $0.backgroundColor = .black
     }
 
     override func viewDidLoad() {
@@ -55,8 +63,7 @@ class ViewController: UIViewController {
     }
     
     private func addView() {
-        [plusButton, minusButton, stroke1, stroke2, mulButton,
-         deButton, stroke3, equalButton, stroke4, resultField].forEach {
+        [plusButton, minusButton, stroke1, stroke2, mulButton,deButton, stroke3, equalButton, stroke4, resultField, refreshButton, stroke5].forEach {
             view.addSubview($0)
         }
     }
@@ -71,13 +78,13 @@ class ViewController: UIViewController {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(resultField.snp.bottom).offset(0)
             $0.leading.equalToSuperview().offset(0)
-            $0.size.equalTo(100)
+            $0.size.equalTo(bounds.height * 0.1)
         }
         minusButton.snp.makeConstraints{
             $0.centerX.equalToSuperview()
             $0.top.equalTo(plusButton.snp.bottom).offset(0)
             $0.leading.equalToSuperview().offset(0)
-            $0.size.equalTo(100)
+            $0.size.equalTo(bounds.height * 0.1)
         }
         stroke1.snp.makeConstraints {
             $0.centerX.equalToSuperview()
@@ -95,13 +102,13 @@ class ViewController: UIViewController {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(stroke2.snp.bottom).offset(0)
             $0.leading.equalToSuperview().offset(0)
-            $0.size.equalTo(100)
+            $0.size.equalTo(bounds.height * 0.1)
         }
         deButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(stroke3.snp.bottom).offset(0)
             $0.leading.equalToSuperview().offset(0)
-            $0.size.equalTo(100)
+            $0.size.equalTo(bounds.height * 0.1)
         }
         stroke3.snp.makeConstraints{
             $0.centerX.equalToSuperview()
@@ -116,10 +123,16 @@ class ViewController: UIViewController {
             $0.top.equalTo(deButton.snp.bottom).offset(0)
         }
         equalButton.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
             $0.top.equalTo(stroke4.snp.bottom).offset(0)
             $0.leading.equalToSuperview().offset(0)
-            $0.size.equalTo(100)
+            $0.trailing.equalToSuperview().offset(-195)
+            $0.size.equalTo(bounds.height * 0.1)
+        }
+        refreshButton.snp.makeConstraints{
+            $0.top.equalTo(stroke4.snp.bottom).offset(0)
+            $0.leading.equalToSuperview().offset(195)
+            $0.trailing.equalToSuperview().offset(0)
+            $0.size.equalTo(bounds.height * 0.1)
         }
     }
     
