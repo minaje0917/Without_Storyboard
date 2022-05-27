@@ -50,9 +50,6 @@ class ViewController: UIViewController {
         $0.backgroundColor = .systemGray2
         $0.setTitle("AC", for: .normal)
     }
-    let stroke5 = UIView().then {
-        $0.backgroundColor = .black
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,7 +60,7 @@ class ViewController: UIViewController {
     }
     
     private func addView() {
-        [plusButton, minusButton, stroke1, stroke2, mulButton,deButton, stroke3, equalButton, stroke4, resultField, refreshButton, stroke5].forEach {
+        [plusButton, minusButton, stroke1, stroke2, mulButton,deButton, stroke3, equalButton, stroke4, resultField, refreshButton].forEach {
             view.addSubview($0)
         }
     }
