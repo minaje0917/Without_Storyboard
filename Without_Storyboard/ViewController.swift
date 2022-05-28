@@ -67,16 +67,14 @@ class ViewController: UIViewController {
     }
     private func setLayout() {
         equalButton.snp.makeConstraints {
-            //.top.equalTo(stroke4.snp.bottom).offset(0)
             $0.bottom.equalToSuperview()
             $0.leading.equalToSuperview().offset(0)
-            $0.trailing.equalToSuperview().offset(-195)
+            $0.trailing.equalTo(view.snp.centerX)
             $0.size.equalTo(bounds.height * 0.1)
         }
         refreshButton.snp.makeConstraints{
             $0.bottom.equalToSuperview()
-            //$0.top.equalTo(stroke4.snp.bottom).offset(0)
-            $0.leading.equalToSuperview().offset(195)
+            $0.leading.equalTo(view.snp.centerX)
             $0.trailing.equalToSuperview().offset(0)
             $0.size.equalTo(bounds.height * 0.1)
         }
