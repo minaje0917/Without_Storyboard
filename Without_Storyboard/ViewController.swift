@@ -50,6 +50,7 @@ class ViewController: UIViewController {
         $0.backgroundColor = .systemGray2
         $0.setTitle("AC", for: .normal)
     }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,71 +66,74 @@ class ViewController: UIViewController {
         }
     }
     private func setLayout() {
-        resultField.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.top.equalToSuperview().offset(241)
+        equalButton.snp.makeConstraints {
+            //.top.equalTo(stroke4.snp.bottom).offset(0)
+            $0.bottom.equalToSuperview()
             $0.leading.equalToSuperview().offset(0)
-            $0.size.equalTo(100)
+            $0.trailing.equalToSuperview().offset(-195)
+            $0.size.equalTo(bounds.height * 0.1)
         }
-        plusButton.snp.makeConstraints{
+        refreshButton.snp.makeConstraints{
+            $0.bottom.equalToSuperview()
+            //$0.top.equalTo(stroke4.snp.bottom).offset(0)
+            $0.leading.equalToSuperview().offset(195)
+            $0.trailing.equalToSuperview().offset(0)
+            $0.size.equalTo(bounds.height * 0.1)
+        }
+        stroke4.snp.makeConstraints{
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(resultField.snp.bottom).offset(0)
+            $0.height.equalTo(1)
+            $0.leading.equalToSuperview().offset(0)
+            $0.bottom.equalTo(equalButton.snp.top).offset(0)
+            $0.bottom.equalTo(refreshButton.snp.top).offset(0)
+        }
+        deButton.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalTo(stroke4.snp.top).offset(0)
             $0.leading.equalToSuperview().offset(0)
             $0.size.equalTo(bounds.height * 0.1)
         }
+        stroke3.snp.makeConstraints{
+            $0.bottom.equalTo(deButton.snp.top).offset(0)
+            $0.centerX.equalToSuperview()
+            $0.height.equalTo(1)
+            $0.leading.equalToSuperview().offset(0)
+        }
+        mulButton.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalTo(stroke3.snp.top).offset(0)
+            $0.leading.equalToSuperview().offset(0)
+            $0.size.equalTo(bounds.height * 0.1)
+        }
+        stroke2.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.height.equalTo(1)
+            $0.leading.equalToSuperview().offset(0)
+            $0.bottom.equalTo(mulButton.snp.top).offset(0)
+        }
         minusButton.snp.makeConstraints{
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(plusButton.snp.bottom).offset(0)
+            $0.bottom.equalTo(stroke2.snp.top).offset(0)
             $0.leading.equalToSuperview().offset(0)
             $0.size.equalTo(bounds.height * 0.1)
         }
         stroke1.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.height.equalTo(1)
-            $0.top.equalTo(minusButton.snp.top).offset(0)
+            $0.bottom.equalTo(minusButton.snp.top).offset(0)
             $0.leading.equalToSuperview().offset(0)
         }
-        stroke2.snp.makeConstraints {
+        plusButton.snp.makeConstraints{
             $0.centerX.equalToSuperview()
-            $0.height.equalTo(1)
-            $0.leading.equalToSuperview().offset(0)
-            $0.top.equalTo(minusButton.snp.bottom).offset(0)
-        }
-        mulButton.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.top.equalTo(stroke2.snp.bottom).offset(0)
+            $0.bottom.equalTo(stroke1.snp.top).offset(0)
             $0.leading.equalToSuperview().offset(0)
             $0.size.equalTo(bounds.height * 0.1)
         }
-        deButton.snp.makeConstraints {
+        resultField.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(stroke3.snp.bottom).offset(0)
+            $0.bottom.equalTo(plusButton.snp.top).offset(0)
             $0.leading.equalToSuperview().offset(0)
-            $0.size.equalTo(bounds.height * 0.1)
-        }
-        stroke3.snp.makeConstraints{
-            $0.centerX.equalToSuperview()
-            $0.height.equalTo(1)
-            $0.leading.equalToSuperview().offset(0)
-            $0.top.equalTo(mulButton.snp.bottom).offset(0)
-        }
-        stroke4.snp.makeConstraints{
-            $0.centerX.equalToSuperview()
-            $0.height.equalTo(1)
-            $0.leading.equalToSuperview().offset(0)
-            $0.top.equalTo(deButton.snp.bottom).offset(0)
-        }
-        equalButton.snp.makeConstraints {
-            $0.top.equalTo(stroke4.snp.bottom).offset(0)
-            $0.leading.equalToSuperview().offset(0)
-            $0.trailing.equalToSuperview().offset(-195)
-            $0.size.equalTo(bounds.height * 0.1)
-        }
-        refreshButton.snp.makeConstraints{
-            $0.top.equalTo(stroke4.snp.bottom).offset(0)
-            $0.leading.equalToSuperview().offset(195)
-            $0.trailing.equalToSuperview().offset(0)
-            $0.size.equalTo(bounds.height * 0.1)
+            $0.size.equalTo(100)
         }
     }
     
