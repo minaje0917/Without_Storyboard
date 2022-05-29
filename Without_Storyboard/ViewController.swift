@@ -13,11 +13,11 @@ class ViewController: UIViewController {
     private let bounds = UIScreen.main.bounds
     let plusButton = UIButton().then {
         $0.setTitle("+", for: .normal)
-        $0.backgroundColor = .systemGray2
+        $0.backgroundColor = .black.withAlphaComponent(0.8)
     }
     let minusButton = UIButton().then {
         $0.setTitle("-", for: .normal)
-        $0.backgroundColor = .systemGray2
+        $0.backgroundColor = .black.withAlphaComponent(0.8)
     }
     let stroke1 = UIView().then {
         $0.backgroundColor = .black
@@ -27,10 +27,10 @@ class ViewController: UIViewController {
     }
     let mulButton = UIButton().then {
         $0.setTitle("x", for: .normal)
-        $0.backgroundColor = .systemGray2
+        $0.backgroundColor = .black.withAlphaComponent(0.8)
     }
     let deButton =  UIButton().then {
-        $0.backgroundColor = .systemGray2
+        $0.backgroundColor = .black.withAlphaComponent(0.8)
         $0.setTitle("÷", for: .normal)
     }
     let stroke3 = UIView().then{
@@ -38,16 +38,17 @@ class ViewController: UIViewController {
     }
     let equalButton = UIButton().then {
         $0.setTitle("=", for: .normal)
-        $0.backgroundColor = .systemGray2
+        $0.backgroundColor = .systemOrange
     }
     let stroke4 = UIView().then {
         $0.backgroundColor = .black
     }
     let resultField = UITextField().then {
-        $0.backgroundColor = .black.withAlphaComponent(0.6)
+        $0.backgroundColor = .black.withAlphaComponent(0.5)
+        $0.textAlignment = .center
     }
     let refreshButton = UIButton().then {
-        $0.backgroundColor = .systemGray2
+        $0.backgroundColor = .black.withAlphaComponent(0.8)
         $0.setTitle("AC", for: .normal)
     }
     
