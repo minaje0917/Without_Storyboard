@@ -46,6 +46,9 @@ class ViewController: UIViewController {
     let resultField = UITextField().then {
         $0.backgroundColor = .black.withAlphaComponent(0.5)
         $0.textAlignment = .center
+        $0.keyboardType = .numberPad
+        $0.becomeFirstResponder()
+        $0.resignFirstResponder()
     }
     let refreshButton = UIButton().then {
         $0.backgroundColor = .black.withAlphaComponent(0.8)
