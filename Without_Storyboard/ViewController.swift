@@ -10,14 +10,20 @@ import SnapKit
 import Then
 
 class ViewController: UIViewController {
+    
     private let bounds = UIScreen.main.bounds
+    private let fristLabel = UILabel()
+    private let secondLabel = UILabel()
+    
     let plusButton = UIButton().then {
         $0.setTitle("+", for: .normal)
         $0.backgroundColor = .black.withAlphaComponent(0.8)
+        $0.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
     }
     let minusButton = UIButton().then {
         $0.setTitle("-", for: .normal)
         $0.backgroundColor = .black.withAlphaComponent(0.8)
+        $0.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
     }
     let stroke1 = UIView().then {
         $0.backgroundColor = .black
@@ -28,10 +34,12 @@ class ViewController: UIViewController {
     let mulButton = UIButton().then {
         $0.setTitle("x", for: .normal)
         $0.backgroundColor = .black.withAlphaComponent(0.8)
+        $0.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
     }
     let deButton =  UIButton().then {
         $0.backgroundColor = .black.withAlphaComponent(0.8)
         $0.setTitle("÷", for: .normal)
+        $0.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
     }
     let stroke3 = UIView().then{
         $0.backgroundColor = .black
@@ -39,6 +47,7 @@ class ViewController: UIViewController {
     let equalButton = UIButton().then {
         $0.setTitle("=", for: .normal)
         $0.backgroundColor = .systemOrange
+        $0.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
     }
     let stroke4 = UIView().then {
         $0.backgroundColor = .black
@@ -51,15 +60,20 @@ class ViewController: UIViewController {
     let refreshButton = UIButton().then {
         $0.backgroundColor = .black.withAlphaComponent(0.8)
         $0.setTitle("AC", for: .normal)
+        $0.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
     }
     
-
+    @objc func buttonAction() {
+        print("Button")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         addView()
         setLayout()
         setLabel()
+        fristLabel.text = resultField.text
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -158,6 +172,7 @@ class ViewController: UIViewController {
         setLabel.leadingAnchor.constraint(equalTo: layout.leadingAnchor, constant: 16).isActive = true
         setLabel.trailingAnchor.constraint(equalTo: layout.trailingAnchor, constant: -16).isActive = true
         setLabel.topAnchor.constraint(equalTo: layout.topAnchor,constant: 10).isActive = true
+        
     }
 }
 
