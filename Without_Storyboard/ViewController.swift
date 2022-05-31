@@ -47,8 +47,6 @@ class ViewController: UIViewController {
         $0.backgroundColor = .black.withAlphaComponent(0.5)
         $0.textAlignment = .center
         $0.keyboardType = .numberPad
-        $0.becomeFirstResponder()
-        $0.resignFirstResponder()
     }
     let refreshButton = UIButton().then {
         $0.backgroundColor = .black.withAlphaComponent(0.8)
@@ -63,6 +61,11 @@ class ViewController: UIViewController {
         setLayout()
         setLabel()
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     
     private func addView() {
         [plusButton, minusButton, stroke1, stroke2, mulButton,deButton, stroke3, equalButton, stroke4, resultField, refreshButton].forEach {
