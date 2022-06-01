@@ -65,7 +65,10 @@ class ViewController: UIViewController {
     
     @objc func buttonAction() {
         print("Button")
+        fristLabel.text = resultField.text
     }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,7 +76,6 @@ class ViewController: UIViewController {
         addView()
         setLayout()
         setLabel()
-        fristLabel.text = resultField.text
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
