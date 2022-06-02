@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     
     private let bounds = UIScreen.main.bounds
     var fristValue: Int = 0
-    var secondLabel: Int = 0
+    var secondValue: Int = 0
     var sum: Int = 0
     
     let plusButton = UIButton().then {
@@ -48,7 +48,7 @@ class ViewController: UIViewController {
     let equalButton = UIButton().then {
         $0.setTitle("=", for: .normal)
         $0.backgroundColor = .systemOrange
-        $0.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(resultAction), for: .touchUpInside)
     }
     let stroke4 = UIView().then {
         $0.backgroundColor = .black
@@ -72,7 +72,7 @@ class ViewController: UIViewController {
     @objc func clearAction() {
         print("clear")
         fristValue = 0
-        secondLabel = 0
+        secondValue = 0
         sum = 0
         resultField.text = nil
     }
@@ -82,9 +82,22 @@ class ViewController: UIViewController {
         if let value = Int(resultField.text ?? "" ){
             fristValue = Int(value)
         }
+        
         sum = sum + fristValue
         print("sum",sum)
         resultField.text = nil
+    }
+    
+    @objc func resultAction() {
+        
+        if let second = Int(resultField.text ?? "" ){
+            secondValue = Int(second)
+        }
+        
+        sum = sum + secondValue
+        print("sum",sum)
+        resultField.text = String(sum)
+        
     }
     
     
