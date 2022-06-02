@@ -12,8 +12,8 @@ import Then
 class ViewController: UIViewController {
     
     private let bounds = UIScreen.main.bounds
-    private let fristLabel = UILabel()
-    private let secondLabel = UILabel()
+    var fristLabel: Int = 0
+    var secondLabel: Int = 0
     
     let plusButton = UIButton().then {
         $0.setTitle("+", for: .normal)
@@ -60,12 +60,18 @@ class ViewController: UIViewController {
     let refreshButton = UIButton().then {
         $0.backgroundColor = .black.withAlphaComponent(0.8)
         $0.setTitle("AC", for: .normal)
-        $0.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(clearAction), for: .touchUpInside)
     }
     
     @objc func buttonAction() {
         print("Button")
-        fristLabel.text = resultField.text
+        
+    }
+    @objc func clearAction() {
+        print("clear")
+        fristLabel = 0
+        secondLabel = 0
+        //resultField.text = "0"
     }
     
     
@@ -76,6 +82,7 @@ class ViewController: UIViewController {
         addView()
         setLayout()
         setLabel()
+        //fristLabel = resultField.text
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
