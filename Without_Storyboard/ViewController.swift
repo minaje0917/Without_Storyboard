@@ -15,53 +15,69 @@ class ViewController: UIViewController {
     var fristValue: Int = 0
     var secondValue: Int = 0
     var sum: Int = 0
+
     
     let plusButton = UIButton().then {
         $0.setTitle("+", for: .normal)
         $0.backgroundColor = .black.withAlphaComponent(0.8)
         $0.addTarget(self, action: #selector(plusAction), for: .touchUpInside)
     }
+    
     let minusButton = UIButton().then {
         $0.setTitle("-", for: .normal)
         $0.backgroundColor = .black.withAlphaComponent(0.8)
         $0.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
     }
+    
     let stroke1 = UIView().then {
         $0.backgroundColor = .black
     }
+    
     let stroke2 = UIView().then {
         $0.backgroundColor = .black
     }
+    
     let mulButton = UIButton().then {
         $0.setTitle("x", for: .normal)
         $0.backgroundColor = .black.withAlphaComponent(0.8)
         $0.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
     }
+    
     let deButton =  UIButton().then {
         $0.backgroundColor = .black.withAlphaComponent(0.8)
         $0.setTitle("÷", for: .normal)
         $0.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
     }
-    let stroke3 = UIView().then{
+    
+    let stroke3 = UIView().then {
         $0.backgroundColor = .black
     }
+    
     let equalButton = UIButton().then {
         $0.setTitle("=", for: .normal)
         $0.backgroundColor = .systemOrange
         $0.addTarget(self, action: #selector(resultAction), for: .touchUpInside)
     }
+    
     let stroke4 = UIView().then {
         $0.backgroundColor = .black
     }
+    
     let resultField = UITextField().then {
         $0.backgroundColor = .black.withAlphaComponent(0.5)
         $0.textAlignment = .center
         $0.keyboardType = .numberPad
     }
-    let refreshButton = UIButton().then {
+    
+    lazy var refreshButton = UIButton().then {
         $0.backgroundColor = .black.withAlphaComponent(0.8)
         $0.setTitle("AC", for: .normal)
         $0.addTarget(self, action: #selector(clearAction), for: .touchUpInside)
+    }
+    
+    let sResultLabel = UILabel().then {
+        $0.backgroundColor = .black.withAlphaComponent(0.3)
+        $0.textAlignment = .center
     }
     
     @objc func buttonAction() {
@@ -75,6 +91,7 @@ class ViewController: UIViewController {
         secondValue = 0
         sum = 0
         resultField.text = nil
+        sResultLabel.text = nil
     }
     
     @objc func plusAction() {
@@ -86,6 +103,7 @@ class ViewController: UIViewController {
         sum = sum + fristValue
         print("sum",sum)
         resultField.text = nil
+        fristValue = 0
     }
     
     @objc func resultAction() {
@@ -96,7 +114,9 @@ class ViewController: UIViewController {
         
         sum = sum + secondValue
         print("sum",sum)
-        resultField.text = String(sum)
+        sResultLabel.text = String(sum)
+        secondValue = 0
+        resultField.text = ""
         
     }
     
@@ -115,7 +135,7 @@ class ViewController: UIViewController {
     
     
     private func addView() {
-        [plusButton, minusButton, stroke1, stroke2, mulButton,deButton, stroke3, equalButton, stroke4, resultField, refreshButton].forEach {
+        [plusButton, minusButton, stroke1, stroke2, mulButton,deButton, stroke3, equalButton, stroke4, resultField, refreshButton, sResultLabel].forEach {
             view.addSubview($0)
         }
     }
@@ -185,8 +205,15 @@ class ViewController: UIViewController {
             $0.centerX.equalToSuperview()
             $0.bottom.equalTo(plusButton.snp.top).offset(0)
             $0.leading.equalToSuperview().offset(0)
-            $0.size.equalTo(100)
+            $0.size.equalTo(bounds.height * 0.1)
         }
+        sResultLabel.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalTo(resultField.snp.top).offset(0)
+            $0.leading.equalToSuperview().offset(0)
+            $0.size.equalTo(bounds.height * 0.1)
+        }
+        
     }
     
     func setLabel() {
