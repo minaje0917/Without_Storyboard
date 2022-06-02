@@ -12,13 +12,14 @@ import Then
 class ViewController: UIViewController {
     
     private let bounds = UIScreen.main.bounds
-    var fristLabel: Int = 0
+    var fristValue: Int = 0
     var secondLabel: Int = 0
+    var sum: Int = 0
     
     let plusButton = UIButton().then {
         $0.setTitle("+", for: .normal)
         $0.backgroundColor = .black.withAlphaComponent(0.8)
-        $0.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(plusAction), for: .touchUpInside)
     }
     let minusButton = UIButton().then {
         $0.setTitle("-", for: .normal)
@@ -67,13 +68,24 @@ class ViewController: UIViewController {
         print("Button")
         
     }
+    
     @objc func clearAction() {
         print("clear")
-        fristLabel = 0
+        fristValue = 0
         secondLabel = 0
-        //resultField.text = "0"
+        sum = 0
+        resultField.text = nil
     }
     
+    @objc func plusAction() {
+        
+        if let value = Int(resultField.text ?? "" ){
+            fristValue = Int(value)
+        }
+        sum = sum + fristValue
+        print("sum",sum)
+        resultField.text = nil
+    }
     
     
     override func viewDidLoad() {
@@ -82,7 +94,6 @@ class ViewController: UIViewController {
         addView()
         setLayout()
         setLabel()
-        //fristLabel = resultField.text
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
