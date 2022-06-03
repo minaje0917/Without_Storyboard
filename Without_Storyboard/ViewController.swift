@@ -94,6 +94,19 @@ class ViewController: UIViewController {
         sResultLabel.text = nil
     }
     
+    @objc func minusAction() {
+        
+        if let value = Int(resultField.text ?? "" ){
+            fristValue = Int(value)
+        }
+        
+        sum = sum - fristValue
+        print("sum",sum)
+        resultField.text = nil
+        fristValue = 0
+        
+    }
+    
     @objc func plusAction() {
         
         if let value = Int(resultField.text ?? "" ){
@@ -117,7 +130,6 @@ class ViewController: UIViewController {
         sResultLabel.text = String(sum)
         secondValue = 0
         resultField.text = ""
-        
     }
     
     
@@ -220,7 +232,7 @@ class ViewController: UIViewController {
         let setLabel = UILabel()
         setLabel.text = "Story_board 없이 계산기를 만들어보자!"
         setLabel.translatesAutoresizingMaskIntoConstraints = false
-        setLabel.font = .italicSystemFont(ofSize: 17)
+        setLabel.font = .boldSystemFont(ofSize: 17)
         setLabel.textColor = .black
         setLabel.numberOfLines = 0
         setLabel.textAlignment = .center
