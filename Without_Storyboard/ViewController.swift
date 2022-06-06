@@ -85,6 +85,13 @@ class ViewController: UIViewController {
         
     }
     
+    @objc func textFieldChange(_sender:Any?) {
+        if let value = Int(resultField.text ?? "" ){
+            fristValue = Int(value)
+        }
+       
+    }
+    
     @objc func clearAction() {
         print("clear")
         fristValue = 0
@@ -95,10 +102,6 @@ class ViewController: UIViewController {
     }
     
     @objc func minusAction() {
-        
-        if let value = Int(resultField.text ?? "" ){
-            fristValue = Int(value)
-        }
         
         sum = sum - fristValue
         print("sum",sum)
