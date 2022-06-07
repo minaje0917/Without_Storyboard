@@ -15,18 +15,19 @@ class ViewController: UIViewController {
     var fristValue: Int = 0
     var secondValue: Int = 0
     var sum: Int = 0
+    let timer = Timer.scheduledTimer(timeInterval: 0.2, target: ViewController.self, selector: #selector(detectvalue), userInfo: nil, repeats: true)
 
     
     let plusButton = UIButton().then {
         $0.setTitle("+", for: .normal)
         $0.backgroundColor = .black.withAlphaComponent(0.8)
-        $0.addTarget(self, action: #selector(plusAction), for: .touchUpInside)
+        $0.addTarget(ViewController.self, action: #selector(plusAction), for: .touchUpInside)
     }
     
     let minusButton = UIButton().then {
         $0.setTitle("-", for: .normal)
         $0.backgroundColor = .black.withAlphaComponent(0.8)
-        $0.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        $0.addTarget(ViewController.self, action: #selector(buttonAction), for: .touchUpInside)
     }
     
     let stroke1 = UIView().then {
@@ -40,13 +41,13 @@ class ViewController: UIViewController {
     let mulButton = UIButton().then {
         $0.setTitle("x", for: .normal)
         $0.backgroundColor = .black.withAlphaComponent(0.8)
-        $0.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        $0.addTarget(ViewController.self, action: #selector(buttonAction), for: .touchUpInside)
     }
     
     let deButton =  UIButton().then {
         $0.backgroundColor = .black.withAlphaComponent(0.8)
         $0.setTitle("÷", for: .normal)
-        $0.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        $0.addTarget(ViewController.self, action: #selector(buttonAction), for: .touchUpInside)
     }
     
     let stroke3 = UIView().then {
@@ -56,7 +57,7 @@ class ViewController: UIViewController {
     let equalButton = UIButton().then {
         $0.setTitle("=", for: .normal)
         $0.backgroundColor = .systemOrange
-        $0.addTarget(self, action: #selector(resultAction), for: .touchUpInside)
+        $0.addTarget(ViewController.self, action: #selector(resultAction), for: .touchUpInside)
     }
     
     let stroke4 = UIView().then {
@@ -85,11 +86,13 @@ class ViewController: UIViewController {
         
     }
     
-    @objc func textFieldChange(_sender:Any?) {
-        if let value = Int(resultField.text ?? "" ){
-            fristValue = Int(value)
+    @objc func detectvalue() {
+        if resultField.text != nil {
+            if let value = Int(resultField.text ?? "" ){
+                fristValue = Int(value)
+                print("value", fristValue)
+            }
         }
-       
     }
     
     @objc func clearAction() {
@@ -136,14 +139,6 @@ class ViewController: UIViewController {
     }
     
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .white
-        addView()
-        setLayout()
-        setLabel()
-    }
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
@@ -154,6 +149,7 @@ class ViewController: UIViewController {
             view.addSubview($0)
         }
     }
+    
     private func setLayout() {
         equalButton.snp.makeConstraints {
             $0.bottom.equalToSuperview()
@@ -248,6 +244,14 @@ class ViewController: UIViewController {
         setLabel.trailingAnchor.constraint(equalTo: layout.trailingAnchor, constant: -16).isActive = true
         setLabel.topAnchor.constraint(equalTo: layout.topAnchor,constant: 10).isActive = true
         
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .white
+        addView()
+        setLayout()
+        setLabel()
+        //timer
     }
 }
 
