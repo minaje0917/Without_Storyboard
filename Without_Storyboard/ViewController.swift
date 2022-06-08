@@ -15,19 +15,19 @@ class ViewController: UIViewController {
     var fristValue: Int = 0
     var secondValue: Int = 0
     var sum: Int = 0
-    let timer = Timer.scheduledTimer(timeInterval: 0.2, target: ViewController.self, selector: #selector(detectvalue), userInfo: nil, repeats: true)
+    lazy var timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(detectvalue), userInfo: nil, repeats: true)
 
     
-    let plusButton = UIButton().then {
+    lazy var plusButton = UIButton().then {
         $0.setTitle("+", for: .normal)
         $0.backgroundColor = .black.withAlphaComponent(0.8)
-        $0.addTarget(ViewController.self, action: #selector(plusAction), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(plusAction), for: .touchUpInside)
     }
     
-    let minusButton = UIButton().then {
+    lazy var minusButton = UIButton().then {
         $0.setTitle("-", for: .normal)
         $0.backgroundColor = .black.withAlphaComponent(0.8)
-        $0.addTarget(ViewController.self, action: #selector(buttonAction), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
     }
     
     let stroke1 = UIView().then {
@@ -38,26 +38,26 @@ class ViewController: UIViewController {
         $0.backgroundColor = .black
     }
     
-    let mulButton = UIButton().then {
+    lazy var mulButton = UIButton().then {
         $0.setTitle("x", for: .normal)
         $0.backgroundColor = .black.withAlphaComponent(0.8)
-        $0.addTarget(ViewController.self, action: #selector(buttonAction), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
     }
     
-    let deButton =  UIButton().then {
+    lazy var deButton =  UIButton().then {
         $0.backgroundColor = .black.withAlphaComponent(0.8)
         $0.setTitle("÷", for: .normal)
-        $0.addTarget(ViewController.self, action: #selector(buttonAction), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
     }
     
     let stroke3 = UIView().then {
         $0.backgroundColor = .black
     }
     
-    let equalButton = UIButton().then {
+    lazy var equalButton = UIButton().then {
         $0.setTitle("=", for: .normal)
         $0.backgroundColor = .systemOrange
-        $0.addTarget(ViewController.self, action: #selector(resultAction), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(resultAction), for: .touchUpInside)
     }
     
     let stroke4 = UIView().then {
