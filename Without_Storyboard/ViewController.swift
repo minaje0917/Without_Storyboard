@@ -116,11 +116,6 @@ class ViewController: UIViewController {
     }
     
     @objc func plusAction() {
-        
-        if let value = Int(resultField.text ?? "" ){
-            fristValue = Int(value)
-        }
-        
         sum = sum + fristValue
         print("sum",sum)
         resultField.text = nil
@@ -128,15 +123,7 @@ class ViewController: UIViewController {
     }
     
     @objc func resultAction() {
-        
-        if let second = Int(resultField.text ?? "" ){
-            secondValue = Int(second)
-        }
-        
-        sum = sum + secondValue
-        print("sum",sum)
         sResultLabel.text = String(sum)
-        secondValue = 0
         resultField.text = ""
     }
     
