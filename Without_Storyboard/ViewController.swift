@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     var fristValue: Int = 0
     var secondValue: Int = 0
     var sum: Int = 0
-    lazy var timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(detectvalue), userInfo: nil, repeats: true)
+    lazy var timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(textFieldDidChange), userInfo: nil, repeats: true)
 
     
     lazy var plusButton = UIButton().then {
@@ -30,11 +30,11 @@ class ViewController: UIViewController {
         $0.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
     }
     
-    let stroke1 = UIView().then {
+    lazy var stroke1 = UIView().then {
         $0.backgroundColor = .black
     }
     
-    let stroke2 = UIView().then {
+    lazy var stroke2 = UIView().then {
         $0.backgroundColor = .black
     }
     
@@ -50,7 +50,7 @@ class ViewController: UIViewController {
         $0.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
     }
     
-    let stroke3 = UIView().then {
+    lazy var stroke3 = UIView().then {
         $0.backgroundColor = .black
     }
     
@@ -60,14 +60,16 @@ class ViewController: UIViewController {
         $0.addTarget(self, action: #selector(resultAction), for: .touchUpInside)
     }
     
-    let stroke4 = UIView().then {
+    lazy var stroke4 = UIView().then {
         $0.backgroundColor = .black
     }
     
-    let resultField = UITextField().then {
+    lazy var resultField = UITextField().then {
         $0.backgroundColor = .black.withAlphaComponent(0.5)
         $0.textAlignment = .center
         $0.keyboardType = .numberPad
+        $0.becomeFirstResponder()
+        $0.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
     }
     
     lazy var refreshButton = UIButton().then {
@@ -76,7 +78,7 @@ class ViewController: UIViewController {
         $0.addTarget(self, action: #selector(clearAction), for: .touchUpInside)
     }
     
-    let sResultLabel = UILabel().then {
+    lazy var sResultLabel = UILabel().then {
         $0.backgroundColor = .black.withAlphaComponent(0.3)
         $0.textAlignment = .center
     }
@@ -86,7 +88,7 @@ class ViewController: UIViewController {
         
     }
     
-    @objc func detectvalue() {
+    @objc func textFieldDidChange(_ textfield: UITextField) {
         if resultField.text != nil {
             if let value = Int(resultField.text ?? "" ){
                 fristValue = Int(value)
@@ -251,7 +253,6 @@ class ViewController: UIViewController {
         addView()
         setLayout()
         setLabel()
-        //timer
     }
 }
 
