@@ -15,7 +15,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
     var fristValue: Int = 0
     var secondValue: Int = 0
     var sum: Int = 0
-    var isFirst: Bool = true
+    var isPlus: Bool = false
+    var isMinus: Bool = false
+    var isMul: Bool = false
+    var isde: Bool = false
     
     lazy var plusButton = UIButton().then {
         $0.setTitle("+", for: .normal)
@@ -68,7 +71,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         $0.textAlignment = .center
         $0.keyboardType = .numberPad
         $0.becomeFirstResponder()
-        $0.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        $0.addTarget(self, action: #selector(buttonAction), for: .editingChanged)
     }
     
     lazy var refreshButton = UIButton().then {
@@ -85,17 +88,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @objc func buttonAction() {
         print("Button")
         
-    }
-    
-    @objc func textFieldDidChange(_ textfield:UITextField) {
-        if isFirst == true {
-            if resultField.text != nil {
-                if let value = Int(resultField.text ?? "" ){
-                    fristValue = Int(value)
-                    print("value", fristValue)
-                }
-            }
-        }
     }
     
     @objc func clearAction() {
@@ -116,16 +108,30 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func plusAction() {
-        isFirst = false
+        if let value = Int(resultField.text ?? "" ){
+            fristValue = Int(value)
+            print("value", fristValue)
+        }
+        
         sum = sum + fristValue
         print("sum",sum)
         resultField.text = nil
         fristValue = 0
+        isPlus = true
     }
     
     @objc func resultAction() {
-        sResultLabel.text = String(sum)
-        resultField.text = ""
+        if let value = Int(resultField.text ?? "" ){
+            secondValue = Int(value)
+            print("value", secondValue)
+        }
+        if isPlus == true {
+            sum = sum + secondValue
+            sResultLabel.text = String(sum)
+            secondValue = 0
+            isPlus = false
+            resultField.text = ""
+        }
     }
     
     
