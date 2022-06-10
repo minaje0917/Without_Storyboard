@@ -29,7 +29,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     lazy var minusButton = UIButton().then {
         $0.setTitle("-", for: .normal)
         $0.backgroundColor = .black.withAlphaComponent(0.8)
-        $0.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(minusAction), for: .touchUpInside)
     }
     
     lazy var stroke1 = UIView().then {
@@ -43,7 +43,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     lazy var mulButton = UIButton().then {
         $0.setTitle("x", for: .normal)
         $0.backgroundColor = .black.withAlphaComponent(0.8)
-        $0.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(mulAction), for: .touchUpInside)
     }
     
     lazy var deButton =  UIButton().then {
@@ -100,11 +100,31 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func minusAction() {
-        sum = sum - fristValue
+        if let value = Int(resultField.text ?? "" ){
+            fristValue = Int(value)
+            print("value", fristValue)
+        }
+        
+        sum = fristValue
         print("sum",sum)
         resultField.text = nil
         fristValue = 0
+        isMinus = true
         
+    }
+    @objc func mulAction() {
+        if let value = Int(resultField.text ?? "" ){
+            fristValue = Int(value)
+            print("value", fristValue)
+        }
+        if sum == 0 {
+            sum = sum + 1
+        }
+        sum = sum * fristValue
+        print("sum",sum)
+        resultField.text = nil
+        fristValue = 1
+        isMul = true
     }
     
     @objc func plusAction() {
@@ -130,6 +150,20 @@ class ViewController: UIViewController, UITextFieldDelegate {
             sResultLabel.text = String(sum)
             secondValue = 0
             isPlus = false
+            resultField.text = ""
+        }
+        else if isMinus == true {
+            sum = sum - secondValue
+            sResultLabel.text = String(sum)
+            secondValue = 0
+            isMinus = false
+            resultField.text = ""
+        }
+        else if isMul == true {
+            sum = sum * secondValue
+            sResultLabel.text = String(sum)
+            secondValue = 0
+            isMul = false
             resultField.text = ""
         }
     }
