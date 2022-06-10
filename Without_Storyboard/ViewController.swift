@@ -9,14 +9,13 @@ import UIKit
 import SnapKit
 import Then
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
     
     private let bounds = UIScreen.main.bounds
     var fristValue: Int = 0
     var secondValue: Int = 0
     var sum: Int = 0
-    lazy var timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(textFieldDidChange), userInfo: nil, repeats: true)
-
+    var isFirst: Bool = true
     
     lazy var plusButton = UIButton().then {
         $0.setTitle("+", for: .normal)
@@ -88,11 +87,13 @@ class ViewController: UIViewController {
         
     }
     
-    @objc func textFieldDidChange(_ textfield: UITextField) {
-        if resultField.text != nil {
-            if let value = Int(resultField.text ?? "" ){
-                fristValue = Int(value)
-                print("value", fristValue)
+    @objc func textFieldDidChange(_ textfield:UITextField) {
+        if isFirst == true {
+            if resultField.text != nil {
+                if let value = Int(resultField.text ?? "" ){
+                    fristValue = Int(value)
+                    print("value", fristValue)
+                }
             }
         }
     }
@@ -107,7 +108,6 @@ class ViewController: UIViewController {
     }
     
     @objc func minusAction() {
-        
         sum = sum - fristValue
         print("sum",sum)
         resultField.text = nil
@@ -116,6 +116,7 @@ class ViewController: UIViewController {
     }
     
     @objc func plusAction() {
+        isFirst = false
         sum = sum + fristValue
         print("sum",sum)
         resultField.text = nil
