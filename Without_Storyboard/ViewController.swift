@@ -104,8 +104,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
             fristValue = Int(value)
             print("value", fristValue)
         }
-        
-        sum = fristValue
+        if sum == 0{
+            sum = fristValue
+        }
+        else{
+            sum = sum - fristValue
+        }
         print("sum",sum)
         resultField.text = nil
         fristValue = 0
