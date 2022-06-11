@@ -18,7 +18,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     var isPlus: Bool = false
     var isMinus: Bool = false
     var isMul: Bool = false
-    var isde: Bool = false
+    var isDe: Bool = false
     
     lazy var plusButton = UIButton().then {
         $0.setTitle("+", for: .normal)
@@ -49,7 +49,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     lazy var deButton =  UIButton().then {
         $0.backgroundColor = .black.withAlphaComponent(0.8)
         $0.setTitle("÷", for: .normal)
-        $0.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(deAction), for: .touchUpInside)
     }
     
     lazy var stroke3 = UIView().then {
@@ -114,7 +114,23 @@ class ViewController: UIViewController, UITextFieldDelegate {
         resultField.text = nil
         fristValue = 0
         isMinus = true
-        
+    }
+    
+    @objc func deAction() {
+        if let value = Int(resultField.text ?? "" ){
+            fristValue = Int(value)
+            print("value", fristValue)
+        }
+        if sum == 0 {
+            sum = fristValue
+        }
+        else {
+            sum = sum / fristValue
+        }
+        print("sum",sum)
+        resultField.text = nil
+        fristValue = 1
+        isDe = true
     }
     @objc func mulAction() {
         if let value = Int(resultField.text ?? "" ){
@@ -166,8 +182,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
         else if isMul == true {
             sum = sum * secondValue
             sResultLabel.text = String(sum)
-            secondValue = 0
+            secondValue = 1
             isMul = false
+            resultField.text = ""
+        }
+        else if isDe == true {
+            sum = sum / secondValue
+            sResultLabel.text = String(sum)
+            secondValue = 1
+            isDe = false
             resultField.text = ""
         }
     }
